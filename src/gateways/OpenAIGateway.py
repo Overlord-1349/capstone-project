@@ -1,5 +1,6 @@
 from typing import List, Dict
 from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 
 
 class OpenAIGateway:
@@ -12,10 +13,9 @@ class OpenAIGateway:
     def __init__(self, key: str) -> None:
         self._client = OpenAI(api_key=key)
 
-    def create_assistant(self, name: str, instructions: str, tools: List[Dict]):
-        return self._client.beta.assistants.create(
-            name=name,
-            instructions=instructions,
-            tools=tools,
-            model=OpenAIGateway.MODEL
+    def create_chat_completion(self, messages: List[ChatCompletionMessageParam], **args) -> ChatCompletion:
+        return self.client.chat.completions.create(
+            model=OpenAIGateway.MODEL,
+            messages=messages,
+            **args,
         )

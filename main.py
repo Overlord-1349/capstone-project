@@ -1,15 +1,14 @@
 import sys
 from pathlib import Path
-from src.Assistant import Assistant
+from src.SelfAppraisal import SelfAppraisal
 from src.gateways.OpenAIGateway import OpenAIGateway
 
 
-print(Path(__file__).parent)
 sys.path.append(Path(__file__).parent)
 with open("key.txt", "r") as fh:
     key = fh.read()
 
-assistant = Assistant(OpenAIGateway(key))
+self_appraisal = SelfAppraisal(OpenAIGateway(key))
 
-with assistant as appraisal:
-    pass
+for _ in range(0, 10):
+    self_appraisal.ask()
