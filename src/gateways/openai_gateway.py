@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List
 from openai import OpenAI
 from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 

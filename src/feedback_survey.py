@@ -1,12 +1,12 @@
 import json
-from src.gateways.OpenAIGateway import OpenAIGateway
+from src.gateways.openai_gateway import OpenAIGateway
 from src.report import Report
 from openai.types.chat import ChatCompletion
 
 
-class SelfAppraisal:
+class FeedbackSurvey:
     CHAT_ROLE = """
-You are a chatbot that will be helping employees to complete their self-evaluation.
+You are a chatbot that will be helping employees to complete a survey.
 First you must get the employee id, after and only after the employee id has been given
 ask employee how do they feel about the following topics: supervisor, food services and work-life balance
 Employee must give an answer for all the 3 topics before closing the appraisal and you
@@ -14,16 +14,13 @@ should rate their answer from 1 to 5 where 1 means employee is not satisfied and
 employee is very satisfied. 
 you need to provide the employee id and the result of the appraisal.
 Below is the list in CSV format of current valid employees and their supervisors
-employee_id, Name, supervisor_employee_id
-1234, Maria,465243
-465243, Jose,, 
-3456, Pepe, 465243
 """
 
     def __init__(self, openai_gateway: OpenAIGateway) -> None:
         self.openai_gateway = openai_gateway
+        content = f'{FeedbackSurvey.CHAT_ROLE}\n{Report.read("employees.csv")}'
         self.messages = [
-            {"role": "system", "content": SelfAppraisal.CHAT_ROLE},
+            {"role": "system", "content": content},
         ]
         self._continue = True
 
@@ -34,7 +31,8 @@ employee_id, Name, supervisor_employee_id
     def next(self):
         response = self.openai_gateway.create_chat_completion(messages=self.messages, tools=tools, temperature=0.8)
         self._call_function(response)
-        prompt = input(response.choices[0].message.content)
+        print(response.choices[0].message.content)
+        prompt = input("answer: ")
         self.messages.append({"role": "user", "content": prompt})
 
     def _call_function(self, response: ChatCompletion):

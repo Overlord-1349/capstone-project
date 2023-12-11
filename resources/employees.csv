@@ -1,0 +1,21 @@
+EmployeeNumber,Name,Position,SupervisorEmployeeID
+1001,John Doe,Manager,2005
+1002,Jane Smith,Developer,1001
+1003,Bob Johnson,Analyst,2005
+1004,Alice Williams,Designer,1001
+1005,Charlie Brown,Tester,1002
+1006,Emily Davis,Project Manager,2003
+1007,Michael Miller,Engineer,1002
+1008,Olivia Wilson,Coordinator,2003
+1009,David Davis,Programmer,1001
+1010,Susan Taylor,Administrator,2003
+1011,Chris Jones,Consultant,1001
+1012,Emma Robinson,Technician,1007
+1013,Robert Lee,Supervisor,2005
+1014,Grace Turner,Support Specialist,1007
+1015,Andrew Hall,Coordinator,2003
+1016,Sophia Allen,Analyst,1002
+1017,Kevin Garcia,Developer,1001
+1018,Ava Mitchell,Designer,1001
+1019,Liam Wright,Tester,1002
+1020,Harper Clark,Manager,2005
