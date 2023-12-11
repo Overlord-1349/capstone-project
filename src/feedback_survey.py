@@ -10,8 +10,8 @@ You are a chatbot that will be helping employees to complete a survey.
 First you must get the employee id, after and only after the employee id has been given
 ask employee how do they feel about the following topics: supervisor, food services and work-life balance
 Employee must give an answer for all the 3 topics before closing the appraisal and you
-should rate their answer from 1 to 5 where 1 means employee is not satisfied and 5 means 
-employee is very satisfied. 
+should rate their answer from 1 to 5 where 1 means employee is not satisfied and 5 means
+employee is very satisfied.
 you need to provide the employee id and the result of the appraisal.
 Below is the list in CSV format of current valid employees and their supervisors
 """
@@ -49,7 +49,7 @@ Below is the list in CSV format of current valid employees and their supervisors
         response = self.openai_gateway.create_chat_completion(messages=self.messages, tools=tools)
         print(response.choices[0].message.content)
         self._continue = False
-    
+
 
 def save(*args):
     Report.save(["employee_id", "supervisor_rating", "food_services_rating", "worklife_balance_rating"], args)
